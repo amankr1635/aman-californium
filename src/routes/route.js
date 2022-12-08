@@ -3,11 +3,16 @@ const router = express.Router();
 const intro = require('./introduction')
 const employee = require('./employee')
 const _ = require('underscore')
+const logger = require('./../logger/logger');
+
 
 router.get('/test-me', function (req, res) {
     console.log("email from introduction module", intro.myEmail)
     intro.myFunction('Sabiha')
     console.log("email from employee module", employee.myEmail)
+    logger.greet()
+    console.log("welcome greeting from logger module",logger.myFunction)
+
 
     const days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
     let result = _.first(days, 4)

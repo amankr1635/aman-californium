@@ -27,15 +27,70 @@ router.get('/test-me', function (req, res) {
 });
 
 
-router.get('/test-me', function(req, res){
+router.get('/test-you', function(req, res){
     console.log("I am here")
     res.send("any dummy text from route handler 2")
 })
+// 1. problem :-
 
-router.get('/students', function (req, res){
-    let students = ['Sabiha', 'Neha', 'Akash']
-    res.send(students)
+router.get('/movies',function(req, res){
+    const movieList =(['Rang de basanti', 'The shining', 'Lord of the rings', 'Batman begins'] )
+    res.send(movieList)
 })
+// 2. & 3. Problem :-
+let movieName =['Rang de basanti', 'The shining', 'Lord of the rings', 'Batman begins']
+
+router.get('/movies/:indexNumber',function (req, res){
+    if(movieName.length > req.params.indexNumber){
+        res.send(movieName[req.params.indexNumber])
+    }else(
+        res.send("Index no. INVALID, please enter a valid INDEX ")
+    )
+})
+// 4. Problem :-
+
+    router.get('/films', function(req,res){
+     let movieList =   [ {
+                'id': 1,
+                'name': 'The Shining'
+            }, {
+                'id': 2,
+                'name': 'Incendies'
+            }, {
+                'id': 3,
+                'name': 'Rang de Basanti'
+            }, {
+                'id': 4,
+                'name': 'Finding Nemo'
+            }]
+            res.send(movieList)
+    })
+
+    //  5. Problem :-
+
+    router.get('/films/:filmId', function (req, res){
+        let movieList =   [ {
+            'id': 1,
+            'name': 'The Shining'
+        }, {
+            'id': 2,
+            'name': 'Incendies'
+        }, {
+            'id': 3,
+            'name': 'Rang de Basanti'
+        }, {
+            'id': 4,
+            'name': 'Finding Nemo'
+        }]
+        if(movieList.length >= req.params.filmId){
+            res.send(movieList[req.params.filmId-1])
+        }else(
+            res.send("No movie exists with this id ")
+        )
+
+    })
+
+
 
 // PATH Param example
 router.get('/student-details/:name', function(req, res){
@@ -60,17 +115,17 @@ router.get('/student-details/:name', function(req, res){
 
 // PATH Param example
 router.get("/profile/:name", function(req, res){
-    console.log('Printing the request to find out wjere name is stored',req.params)
+    console.log('Printing the request to find out where name is stored',req.params)
     console.log('user name is',req.params.name)
     //console.log(`User requesting for profile is ${name}`)
-    res.send("dummy details")
+    res.send(req.params.name)
 })
 
 // Query Param example
 router.get("/shoes", function(req, res){
     console.log("The filter options for shoes are -",req.query)
-    //req.query.size
-    //req.query.brand
+    req.query.size
+    req.query.brand
     res.send("dummy shoes response")
 })
 

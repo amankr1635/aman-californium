@@ -104,13 +104,13 @@ let players =
 router.post("/players", function(req, res){
 
 const body = req.body
-const playerDetails = players.find((x)=> x.name === body.name)
+const playerDetails = players.find((x) => x.name === body.name)
 if(playerDetails ){
- return res.send("Player exist")
+ return res.send("Player already exist")
 
 }else{
     players.push(body)
-    return res.send({data:players, status:true})
+    return res.send( {data : players, status:true} )
 }
 
 })

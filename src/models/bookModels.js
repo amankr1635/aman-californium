@@ -6,8 +6,8 @@ const bookSchema = new mongoose.Schema ({
         required: true
     },
     price:{
-        indianPrice: Number,
-        europeanPrice: Number
+        indianPrice: String,
+        europeanPrice: String
     },
     year :{
         type: Number,
@@ -20,4 +20,4 @@ const bookSchema = new mongoose.Schema ({
 
 }, {timestamps:true})
 
-module.exports = mongoose.model('newBooks', bookSchema)
+module.exports = mongoose.model('Books', bookSchema)

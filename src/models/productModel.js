@@ -9,6 +9,6 @@ const productSchema = new mongoose.Schema({
         default : 70
      }, //mandatory property
 
-})
+},{timestamps : true})
 
 module.exports = mongoose.model("newProdut", productSchema)

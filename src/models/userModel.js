@@ -1,13 +1,18 @@
 const mongoose = require("mongoose")
 
-
 const userSchema = new mongoose.schema({
-    name:String,
-	category:String,
-	price: {
+    name: String,
+	balance: {
         type : Number,
-        required: true
+        default : 100
     },
+	address:String,
+	age: Number,
+ 	gender: $enum ["male", "female", "other"],
+	isFreeAppUser: {
+        type :Boolean, 
+        default : false
+}
 },{timestamps : true})
 
 module.exports = mongoose.model("newUser", userSchema)

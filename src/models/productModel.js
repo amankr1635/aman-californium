@@ -6,8 +6,8 @@ const productSchema = new mongoose.Schema({
 	category:String,
 	price:{
         type : Number,
-        default : 70
-     }, //mandatory property
+        required : true
+     }, 
 
 },{timestamps : true})
 

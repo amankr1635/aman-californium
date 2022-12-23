@@ -21,6 +21,27 @@ app.use (
   }
   );
 
+app.use (
+    function (req,res,next){
+        let currentDate = new Date();
+        let dateTime = currentDate.getDate() + "/" + currentDate.getMonth()+ "/" + currentDate.getFullYear() + "|" + currentDate.getHours()+ "-"+ currentDate.getMinutes()+ "-"+ currentDate.getSeconds()
+        let ip = req.ip
+        let url = req.url
+        console.log(dateTime, ip, url)
+        next()
+    }
+)
+
+app.use(
+    function(req,res,next){
+        let ip = (req.ip)
+        let url = (req.url)
+        let time = (new Date())
+        console.log(ip,url,time)
+        next()
+    }
+)
+
 app.use('/', route);
 
 

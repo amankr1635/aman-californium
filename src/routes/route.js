@@ -10,6 +10,6 @@ router.get('/test-me', function (req, res) {
 
 router.post('/createProduct', controller.product)
 router.post('/createUser',middleware.isValidation, controller.user)
-router.post('/createOrder',middleware.isValidation, controller.order)
+router.post('/createOrder',middleware.isValidation,middleware.userCheck, controller.order)
 
 module.exports = router;

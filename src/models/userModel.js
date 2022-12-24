@@ -1,6 +1,6 @@
 const mongoose = require("mongoose")
 
-const userSchema = new mongoose.schema({
+const userSchema = new mongoose.Schema({
     name: String,
 	balance: {
         type : Number,
@@ -8,7 +8,10 @@ const userSchema = new mongoose.schema({
     },
 	address:String,
 	age: Number,
- 	gender: $enum ["male", "female", "other"],
+ 	gender: {
+        type:String,
+        enum :["male", "female", "other"]
+    },
 	isFreeAppUser: {
         type :Boolean, 
         default : false

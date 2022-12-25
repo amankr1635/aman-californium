@@ -17,18 +17,16 @@ const user =async function(req,res){
 }
 const order = async function (req,res){
     let data = req.body
-    if(!isValidObjectId(data.userId )){
-    res.send({msg : "ERROR Please Enter Valid USER-ID" })
-    }else if( !isValidObjectId(data.productId)){
-        res.send({msg: "ERROR Please Enter Valid PRODUCT-ID"})
-    }else{
-     let createOrder = await orderModel.create(data)
-      res.send({result: createOrder})
-    }   
-}
-
-
-
+    // let hData = req.headers
+    
+    // if(!isValidObjectId(data.userId )){
+    // res.send({msg : "ERROR Please Enter Valid USER-ID" })
+    // }else if( !isValidObjectId(data.productId)){
+    //     res.send({msg: "ERROR Please Enter Valid PRODUCT-ID"})
+    // }
+     let finalData = await orderModel.create(data)
+     res.send({msg : finalData})
+    }
 
 
 

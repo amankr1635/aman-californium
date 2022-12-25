@@ -1,3 +1,4 @@
+const { isValidObjectId } = require("mongoose");
 const productModel = require("../models/productModel");
 const userModel = require("../models/userModel");
 
@@ -13,16 +14,36 @@ const isValidation =function(req,res,next){
 
  const userCheck = async function(req,res,next){
     let data = req.body
+    let hData = req.headers
+    if(!isValidObjectId(data.userId)){
+        res.send({msg : "user Id invalid"})
+    }if(!isValidObjectId(data.productId)){
+        res.send({msg : "product id is invalid"})
+    }
     let userDetails = await userModel.findOne({_id : data.userId})
     let productDetails = await productModel.findOne({_id : data.productId})
     // console.log(userDetails)
+    if (hData.isfreeappuser == "false"){
+        let accBalance = userDetails.balance
+        let price = data.amount
+        if(price>accBalance){
+           return res.send({msg : "Insufficient Balance"})
+        }else{
+        let finalBal = accBalance-price
+        let finalOutput = await userModel.findOneAndUpdate(
+            {_id:data.userId},
+            {$set:{balance:finalBal}},
+            {new:true}
+        )
+        }
+    }
+  
     next()
  }
 
 
 module.exports.isValidation = isValidation
 module.exports.userCheck = userCheck
-
 
 
 

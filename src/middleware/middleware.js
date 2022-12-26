@@ -14,16 +14,20 @@ const isValidation =function(req,res,next){
 
  const userCheck = async function(req,res,next){
     let data = req.body
-    let hData = req.headers
+    let headers = req.headers.isfreeappuser
     if(!isValidObjectId(data.userId)){
         res.send({msg : "user Id invalid"})
     }if(!isValidObjectId(data.productId)){
         res.send({msg : "product id is invalid"})
     }
     let userDetails = await userModel.findOne({_id : data.userId})
-    let productDetails = await productModel.findOne({_id : data.productId})
+    // let productDetails = await productModel.findOne({_id : data.productId})
     // console.log(userDetails)
-    if (hData.isfreeappuser == "false"){
+    if (headers == "true"){
+        data.amount = 0
+        return next()
+    }
+    if (headers == "false"){
         let accBalance = userDetails.balance
         let price = data.amount
         if(price>accBalance){
@@ -44,7 +48,3 @@ const isValidation =function(req,res,next){
 
 module.exports.isValidation = isValidation
 module.exports.userCheck = userCheck
-
-
-
-

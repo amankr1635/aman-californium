@@ -2,7 +2,6 @@ const userModel = require("../models/userModel");
 const productModel = require("../models/productModel");
 const orderModel = require("../models/orderModel");
 const {isValidObjectId, default: mongoose} = require('mongoose');
-const { validate } = require("../models/userModel");
 
 const product = async function(req,res){
     let data = req.body
@@ -17,13 +16,6 @@ const user =async function(req,res){
 }
 const order = async function (req,res){
     let data = req.body
-    // let hData = req.headers
-    
-    // if(!isValidObjectId(data.userId )){
-    // res.send({msg : "ERROR Please Enter Valid USER-ID" })
-    // }else if( !isValidObjectId(data.productId)){
-    //     res.send({msg: "ERROR Please Enter Valid PRODUCT-ID"})
-    // }
      let finalData = await orderModel.create(data)
      res.send({msg : finalData})
     }

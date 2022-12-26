@@ -2,11 +2,12 @@ const mongoose = require("mongoose");
 
 const customerSchema = new mongoose.schema({
 
-    firstName : string,
-    lastName : string,
+    firstName : String,
+    lastName : String,
     mobileNumber : {
-      type :  String 
-    //   10 digits long
+      type : String,
+      min : 10,
+      max : 10
     },   
     DOB : date,
     emailID :{
@@ -16,9 +17,14 @@ const customerSchema = new mongoose.schema({
     address: String,
     customerID : {
         type :String,
+        unique : true
         //  UUID
     },
-    status : String
+    status :{
+        type : String,
+        enum : ["ACTIVE", "INACTIVE"]
+    } 
 
 
-})
+},{timestamps: true})
+module.exports =mongoose.model("customer", customerSchema)

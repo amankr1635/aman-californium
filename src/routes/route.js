@@ -8,5 +8,8 @@ router.get('/test-me', function (req, res) {
 });
 
 router.post('/user', controller.userCreate)
-router.post('/login', midd1.validation, controller.signUp) 
+router.post('/login', midd1.userValidation, controller.loginUser) 
+router.get('/users/:userId', midd1.hValidation, controller.getUser)
+router.put('/users/:userId', midd1.hValidation, controller.updateUser)
+router.delete('/users/:userId',midd1.hValidation, controller.userDelete)
 module.exports = router;

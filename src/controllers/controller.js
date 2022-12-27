@@ -28,6 +28,7 @@ const updateUser = async function(req,res){
     let updatedUser = await userModel.findOneAndUpdate({_id:pData},{$set : bData},{new:true})
     res.send({status:true , result : updatedUser})
 }
+
 const userDelete = async function(req,res){
     let pData = req.params.userId
     let userDetails = await userModel.findOneAndUpdate({_id:pData}, {$set:{isDeleted : true}} , {new:true})

@@ -1,16 +1,15 @@
 const userModel = require("../models/userModel");
 const jwt = require("jsonwebtoken");
 
-
 const userValidation = async function(req,res,next){
     let eData = req.body.emailId
     let pData = req.body.password
-    let userDetails = await userModel.find({emailId:eData , password: pData})
-if(!userDetails){
+    let userDetails = await userModel.findOne({emailId :eData  , password: pData})
+    if(!userDetails){
     return res.send({status:false, msg : "INVALID USERID OR PASSWORD "})
-}
+  }
     next()
-}
+ }
 
 const hValidation = async function(req,res,next){
     let hData = req.headers["x-auth-token"]

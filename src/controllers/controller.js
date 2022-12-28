@@ -31,10 +31,7 @@ const userDelete = async function(req,res){
     let pData = req.params.userId
     let userDetails = await userModel.findOneAndUpdate({_id:pData}, {$set:{isDeleted : true}} , {new:true})
     res.send({status:true, result: userDetails})
-
-
 }
-
 
 
 module.exports.userCreate = userCreate
@@ -42,4 +39,6 @@ module.exports.loginUser = loginUser
 module.exports.getUser = getUser
 module.exports.updateUser =updateUser
 module.exports.userDelete =userDelete
+
+
 

@@ -44,3 +44,8 @@ Add this middleware at route level in the routes where applicable.
 + You have to implement authorisation for fetch user details, update user and delete user apis
 + Run this code and ensure the authorisation works fine for all the apis before following the next requirement
 + You now have to move this similar code in all the three apis in a suitable middleware
+
+
+Add - 
+
+TRY CATCH :- apply to all and handle error by status code.

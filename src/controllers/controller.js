@@ -10,21 +10,19 @@ const userCreate = async function(req,res){
 
 const loginUser = async function(req,res){
     let data = req.body
-    let createdlogin = await userModel.findOne({emailId:'data.emailId'})
-    let result =  await jwt.sign({createdlogin:data.emailId}, "logInCreated")
+    let emailId = await userModel.findOne({emailId:'data.emailId'})
+    let result =  await jwt.sign({emailId:data.emailId}, "logInCreated")
     res.send({status:true,response:result})
 }
 
 const getUser = async function(req,res){
     let pData = req.params.userId
-
-    let userDetails = await userModel.find({pData})
+    let userDetails = await userModel.find({_id : pData})
     res.send({status: true, return : userDetails})
 }                 
 const updateUser = async function(req,res){
     let pData = req.params.userId
     let bData = req.body
-    // let userDetails = await userModel.find({pData})
     let updatedUser = await userModel.findOneAndUpdate({_id:pData},{$set : bData},{new:true})
     res.send({status:true , result : updatedUser})
 }

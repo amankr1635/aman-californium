@@ -11,23 +11,24 @@ const userValidation = async function (req, res, next) {
         next()
     }
 
-const hValidation = async function (req, res, next) {
+    const hValidation = async function (req, res, next) {
         let hData = req.headers["x-auth-token"]
 
         if (!hData) {
             return res.send({ status: false, msg: "Header Is Missing" })
         }
         let userCheck = jwt.verify(hData, "logInCreated")
-
+            console.log(userCheck)
         // if (!userCheck) {
         //     return res.send({ status: false, msg: "User Token Is Invalid" })
         // }
         let userModified = req.params.userId
+        console.log(userModified)
         // let extId = await userModel.findOne({ emailId: userCheck.emailId })
-        let extId = await userModel.findOne({ _id:userModified })
-
-        // let userLoggedIn = extId._id
-        if(userCheck.emailId != extId.emailId){
+        let extId = await userModel.findOne({ _id: userModified})
+        console.log(extId)
+        let userLoggedIn = extId._id
+        if(userCheck.createdlogin != extId.emailId){
         // if (userLoggedIn != userModified) {
             return res.send({ status: false, msg: "you are not allowed to make change in others DATA" })
         }

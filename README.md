@@ -45,7 +45,3 @@ Add this middleware at route level in the routes where applicable.
 + Run this code and ensure the authorisation works fine for all the apis before following the next requirement
 + You now have to move this similar code in all the three apis in a suitable middleware
 
-
-Add - 
-
-TRY CATCH :- apply to all and handle error by status code.

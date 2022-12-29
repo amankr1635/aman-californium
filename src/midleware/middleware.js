@@ -34,7 +34,7 @@ const hValidation = async function (req, res, next) {
         // let userLoggedIn = extId._id
         if(userCheck.emailId != extId.emailId){
         // if (userLoggedIn != userModified) {
-            return res.send({ status: false, msg: "you are not allowed to make change in others DATA" })
+            return res.status(403).send({ status: false, msg: "you are not allowed to make change in others DATA" })
         }
         next()
     } catch (error) {

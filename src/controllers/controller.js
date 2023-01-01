@@ -12,7 +12,7 @@ const loginUser = async function(req,res){
     let data = req.body
     let createdlogin = await userModel.findOne({emailId:'data.emailId'})
     
-    let result =  await jwt.sign({createdlogin:data.emailId}, "logInCreated")
+    let result =  jwt.sign({createdlogin:data.emailId}, "logInCreated")
     res.send({status:true,response:result})
 }
 
